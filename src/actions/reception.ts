@@ -1,6 +1,7 @@
 'use server';
 
 import { db } from '@/lib/db';
+import { checkRateLimit } from '@/lib/rate-limit';
 import { weddings, eventMembers, guests } from '@/lib/db/schema';
 import { eq, and, sql } from 'drizzle-orm';
 import { asc } from 'drizzle-orm';
@@ -32,6 +33,11 @@ export async function addReceptionGuest(
   data: { name: string; side: string; group_name: GroupName; envelope_number: number },
   pin: string,
 ) {
+  const { success } = checkRateLimit(`reception:${weddingId}`, 10, 5 * 60 * 1000);
+  if (!success) {
+    return { error: '너무 많은 요청입니다. 잠시 후 다시 시도해주세요.' };
+  }
+
   const wedding = await db.select({ share_code: weddings.share_code })
     .from(weddings)
     .where(eq(weddings.id, weddingId))

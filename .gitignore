@@ -45,6 +45,7 @@ next-env.d.ts
 
 # screenshots (dev only)
 *.png
+!public/icons/*.png
 
 # tool/plugin state
 .omc/

@@ -7,12 +7,24 @@ export function validateGuestForm(data: GuestFormData): Record<string, string> {
     errors.name = '이름을 입력해주세요';
   }
 
+  if (data.name.trim().length > 50) {
+    errors.name = '이름은 50자 이내로 입력해주세요';
+  }
+
   if (data.gift_amount < 0) {
     errors.gift_amount = '금액은 0원 이상이어야 합니다';
   }
 
+  if (data.gift_amount > 100_000_000) {
+    errors.gift_amount = '금액은 1억원 이하로 입력해주세요';
+  }
+
   if (data.meal_tickets < 0) {
     errors.meal_tickets = '식권 수는 0장 이상이어야 합니다';
+  }
+
+  if (data.meal_tickets > 100) {
+    errors.meal_tickets = '식권은 100장 이하로 입력해주세요';
   }
 
   if (data.phone && !/^[0-9-]{10,13}$/.test(data.phone)) {
@@ -43,8 +55,16 @@ export function validateQuickEntry(data: QuickEntryData): Record<string, string>
     errors.name = '이름을 입력해주세요';
   }
 
+  if (data.name.trim().length > 50) {
+    errors.name = '이름은 50자 이내로 입력해주세요';
+  }
+
   if (data.gift_amount < 0) {
     errors.gift_amount = '금액은 0원 이상이어야 합니다';
+  }
+
+  if (data.gift_amount > 100_000_000) {
+    errors.gift_amount = '금액은 1억원 이하로 입력해주세요';
   }
 
   return errors;

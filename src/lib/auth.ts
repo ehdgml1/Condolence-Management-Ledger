@@ -13,6 +13,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       credentials: {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
+        rememberMe: { label: 'Remember Me', type: 'text' },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null;
@@ -26,7 +27,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const isValid = await bcrypt.compare(password, user.password_hash);
         if (!isValid) return null;
 
-        return { id: user.id, email: user.email };
+        return {
+          id: user.id,
+          email: user.email,
+          rememberMe: credentials.rememberMe === 'true',
+        };
       },
     }),
   ],

@@ -60,8 +60,20 @@ export default function LoginPage() {
                   type="password"
                   placeholder="••••••••"
                   required
-                  minLength={6}
+                  minLength={8}
                 />
+              </div>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                  name="rememberMe"
+                  defaultChecked
+                  className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                />
+                <Label htmlFor="rememberMe" className="text-sm font-normal text-muted-foreground cursor-pointer">
+                  로그인 유지
+                </Label>
               </div>
               <Button type="submit" className="w-full" disabled={isPending}>
                 {isPending ? '로그인 중...' : '로그인'}

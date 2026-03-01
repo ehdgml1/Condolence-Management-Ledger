@@ -20,6 +20,11 @@ const client = createClient({
 const db = drizzle(client, { schema });
 
 async function seed() {
+  if (process.env.NODE_ENV === 'production') {
+    console.error('Seed script cannot run in production environment.');
+    process.exit(1);
+  }
+
   const email = 'admin@wedding.local';
   const password = 'password123';
 
@@ -37,12 +42,10 @@ async function seed() {
     await db.insert(schema.users)
       .values({ email, password_hash: passwordHash })
       .run();
-    console.log(`Created user: ${email} / ${password}`);
+    console.log(`Created user: ${email}`);
   }
 
-  console.log('\nSeed complete. You can now log in with:');
-  console.log(`  Email: ${email}`);
-  console.log(`  Password: ${password}`);
+  console.log('\nSeed complete.');
 }
 
 seed().catch(console.error);
