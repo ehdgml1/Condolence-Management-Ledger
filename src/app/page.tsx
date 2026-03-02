@@ -4,7 +4,6 @@ import { Heart, ArrowRight } from 'lucide-react';
 import { HeroSection } from '@/components/landing/HeroSection';
 import { AnimatedSection } from '@/components/landing/AnimatedSection';
 import { FeaturesGrid } from '@/components/landing/FeaturesGrid';
-import { PricingCards } from '@/components/landing/PricingCards';
 
 export default function LandingPage() {
   return (
@@ -29,21 +28,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-20 px-4 bg-romantic-gradient">
-        <div className="max-w-4xl mx-auto">
-          <AnimatedSection className="text-center mb-12">
-            <h2 className="font-heading text-3xl font-bold mb-3">심플한 요금제</h2>
-            <p className="text-muted-foreground">필요한 만큼만, 부담 없이</p>
-          </AnimatedSection>
-
-          {/* Stagger-animated cards — client island */}
-          <PricingCards />
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="py-20 px-4 bg-background">
+      <section className="py-20 px-4 bg-romantic-gradient">
         <AnimatedSection className="max-w-lg mx-auto text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/10 mb-6 relative">
             <Heart className="w-8 h-8 text-primary" />
