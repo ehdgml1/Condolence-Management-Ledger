@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Heart, ArrowRight } from 'lucide-react';
+import { Heart, ArrowRight, Download } from 'lucide-react';
 import { HeroSection } from '@/components/landing/HeroSection';
 import { AnimatedSection } from '@/components/landing/AnimatedSection';
 import { FeaturesGrid } from '@/components/landing/FeaturesGrid';
@@ -59,7 +59,16 @@ export default function LandingPage() {
               경조사 관리 대장
             </span>
           </div>
-          <p>© {new Date().getFullYear()} 경조사 관리 대장. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/install"
+              className="flex items-center gap-1.5 text-primary hover:underline"
+            >
+              <Download className="w-3.5 h-3.5" />
+              앱 설치하기
+            </Link>
+            <p>© {new Date().getFullYear()} 경조사 관리 대장. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>

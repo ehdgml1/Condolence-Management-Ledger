@@ -15,7 +15,8 @@ export default auth((req) => {
     pathname.startsWith('/invite') ||
     pathname.startsWith('/reception') ||
     pathname.startsWith('/api/auth') ||
-    pathname === '/';
+    pathname === '/' ||
+    pathname === '/install';
 
   if (!req.auth && !isPublicRoute) {
     const url = req.nextUrl.clone();
